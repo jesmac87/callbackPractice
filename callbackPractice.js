@@ -8,7 +8,7 @@ Below is a sample problem
    });
    
 
-and what you should write is the favNum function that makes the code above work, 
+and what you should write is the sayHi function that makes the code above work, 
     
     
    var sayHi = function(str, cb){
@@ -23,8 +23,10 @@ and what you should write is the favNum function that makes the code above work,
 */
 
 
-
-  //Code Here for first
+//Code here for first
+var first = function(arrayOfNames, cb) {
+  cb(arrayOfNames[0]);
+};
   
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 first(names, function(firstName){
@@ -39,6 +41,10 @@ first(names, function(firstName){
 
 
   //Code Here for last
+
+var last = function(arrayOfNames, cb) {
+  cb(arrayOfNames[arrayOfNames.length - 1]);
+};
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 last(names, function(lastName){
@@ -58,9 +64,13 @@ last(names, function(lastName){
 
   //Code Here for multiply
 
+var multiply = function(num1, num2, cb) {
+  cb(num1*num2);
+};
+
 multiply(4, 3, function(answer){
   console.log('The answer is ', answer); //should console.log 12
-})
+});
 
 
 
@@ -73,6 +83,10 @@ multiply(4, 3, function(answer){
 
 
   //Code Here for contains
+
+var contains = function (arrayOfNames, findName, cb) {
+  cb(arrayOfNames.indexOf(findName) !== -1);
+};
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 contains(names, 'Colt', function(result){
@@ -94,6 +108,18 @@ contains(names, 'Colt', function(result){
 
     //Code Here for uniq
 
+//with underscore library
+var uniq = function (arrayOfNames, cb) {
+  cb(_.uniq(arrayOfNames));
+};
+
+//possible solution without library
+var uniq = function (arrayOfNames, cb) {
+  cb(arrayOfNames.filter(function(elem, index) {
+    return arrayOfNames.indexOf(elem) === index;
+  })); 
+};
+
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 uniq(names, function(uniqArr){
   console.log('The new names array with all the duplicate items removed is ', uniqArr);
@@ -109,6 +135,11 @@ uniq(names, function(uniqArr){
 
 
     //Code Here for each
+var each = function (array, cb) {
+  for(var i = 0; i < array.length; i++){
+    cb(array[i], i);
+  }
+};
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 each(names, function(item, indice){
@@ -126,6 +157,17 @@ each(names, function(item, indice){
 
 
  //code here for getUserById
+
+var getUserById = function (array, id, cb) {
+    //find the user id in the array
+    for (var i = 0; i < array.length; i++) {
+        for (var key in array[i]) {
+            if (array[i].id === id) {
+                return cb(array[i]);
+            }
+        }
+    }
+};
 
 var users = [
   {
@@ -145,7 +187,7 @@ var users = [
     email: 'ryan@gmail.com',
     name: 'Ryan',
     address: '192 East 32 North'
-  },
+  }
 ];
 
 getUserById(users, '16t', function(user){
