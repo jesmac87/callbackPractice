@@ -1,3 +1,5 @@
+//Author: Jesse M.
+
 /* In this repo your job is to write functions to make each function call work properly.
 Below is a sample problem 
 
