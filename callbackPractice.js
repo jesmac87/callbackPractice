@@ -122,6 +122,15 @@ var uniq = function (arrayOfNames, cb) {
   })); 
 };
 
+//another possible solution
+var uniq = function( arrayOfNames, cb) {
+  var uniqueObject ={};
+  for (var i = 0; i < arrayOfNames.length; i++) {
+    uniqueObject[arrayOfNames[i]] = null;
+  }
+  return(uniqueObject);
+}
+
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 uniq(names, function(uniqArr){
   console.log('The new names array with all the duplicate items removed is ', uniqArr);
