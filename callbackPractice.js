@@ -125,10 +125,14 @@ var uniq = function (arrayOfNames, cb) {
 //another possible solution
 var uniq = function( arrayOfNames, cb) {
   var uniqueObject ={};
+  var returnArray = [];
   for (var i = 0; i < arrayOfNames.length; i++) {
     uniqueObject[arrayOfNames[i]] = null;
   }
-  return(uniqueObject);
+  for (var key in uniqueObject) {
+    returnArray.push(key);
+  }
+  return returnArray;
 }
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
